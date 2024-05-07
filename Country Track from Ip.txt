@@ -1,0 +1,36 @@
+https://ip2c.org/s
+
+
+
+
+
+onMounted(async () => {
+    const getCountry = async () => {
+        try {
+            const response = await fetch("https://ip2c.org/s");
+            const result = await response.text();
+
+            if (!result || result[0] !== "1") {
+                console.warn("Unable to fetch the country.");
+                return null;
+            }
+
+            return result.substr(2,2);
+        } catch (error) {
+            console.error("Error fetching country:", error);
+            return null;
+        }
+    };
+    const countryCode = await getCountry();
+//below code is use to do whatever function you want to perform i am selecting the code of my current Country and finding the matched country from "https://github.com/aun143/Country-CodesList-with-Names-Flags-DialCode/" and updating my selectCountry.value 
+    if (countryCode) {
+        const foundCountry = countries.find(country => country.code === countryCode.toLowerCase());
+        if (foundCountry) {
+            selectedCountry.value = foundCountry;
+        } else {
+            console.warn("Country not found in the list.");
+        }
+    } else {
+        console.warn("Country code not retrieved.");
+    }
+});
