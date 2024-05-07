@@ -1,0 +1,1 @@
+this code is use to fetch cuurent country and then do whatever function you want to perform i am selecting the code of my current Country and finding the matched country from "https://github.com/aun143/Country-CodesList-with-Names-Flags-DialCode/" and updating my selectCountry.value 
